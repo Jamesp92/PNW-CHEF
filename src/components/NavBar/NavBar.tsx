@@ -20,6 +20,7 @@ const pages = [
 
 function NavBar() {
   const [showBackToTop, setShowBackToTop] = React.useState(false);
+  const navBarHeight = 64; // Adjust based on your NavBar height
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +39,21 @@ function NavBar() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleScroll = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    href: string
+  ) => {
+    event.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const offsetTop = (element as HTMLElement).offsetTop;
+      window.scrollTo({
+        top: offsetTop - navBarHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       <AppBar
@@ -49,7 +65,6 @@ function NavBar() {
       >
         <Container maxWidth="xl" disableGutters>
           <Toolbar disableGutters>
-            {/* Left-side navigation items */}
             <Box
               sx={{ display: "flex", flexGrow: 0.5, justifyContent: "right" }}
             >
@@ -57,12 +72,12 @@ function NavBar() {
                 <Button
                   key={page.label}
                   href={page.href}
+                  onClick={(event) => handleScroll(event, page.href)}
                   sx={{
                     my: 2,
                     color: "black",
                     display: "block",
-                    borderBottom: "2px solid transparent",
-                    fontSize: { xs: "1rem", md: "1.25rem" }, // Adjust font size
+                    fontSize: { xs: "0.75rem", md: "0.875rem" }, // Adjust font size
                     mx: { xs: 1, md: 2 }, // Adjust margin for spacing
                     "&:hover": {
                       borderBottom: "2px solid black",
@@ -90,7 +105,7 @@ function NavBar() {
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
-                  fontSize: { xs: "1rem", md: "1.5rem" }, // Adjust font size
+                  fontSize: { xs: "0.875rem", md: "1.25rem" }, // Adjust font size
                   color: "black",
                   textDecoration: "none",
                 }}
@@ -107,7 +122,7 @@ function NavBar() {
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
-                  fontSize: { xs: "1rem", md: "1.5rem" }, // Adjust font size
+                  fontSize: { xs: "0.875rem", md: "1.25rem" }, // Adjust font size
                   color: "black",
                   textDecoration: "none",
                 }}
@@ -116,18 +131,17 @@ function NavBar() {
               </Typography>
             </Box>
 
-            {/* Right-side navigation items */}
             <Box sx={{ display: "flex", flexGrow: 0.5 }}>
               {pages.slice(2).map((page) => (
                 <Button
                   key={page.label}
                   href={page.href}
+                  onClick={(event) => handleScroll(event, page.href)}
                   sx={{
                     my: 2,
                     color: "black",
                     display: "block",
-                    borderBottom: "2px solid transparent",
-                    fontSize: { xs: "1rem", md: "1.25rem" }, // Adjust font size
+                    fontSize: { xs: "0.75rem", md: "0.875rem" }, // Adjust font size
                     mx: { xs: 1, md: 2 }, // Adjust margin for spacing
                     "&:hover": {
                       borderBottom: "2px solid black",
@@ -148,10 +162,19 @@ function NavBar() {
       </AppBar>
       {showBackToTop && (
         <Fab
-          color="secondary"
           size="small"
           onClick={handleBackToTop}
-          sx={{ position: "fixed", bottom: 16, right: 16 }}
+          sx={{
+            position: "fixed",
+            bottom: 16,
+            right: 16,
+            backgroundColor: "black",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "black",
+              color: "white",
+            },
+          }}
         >
           <KeyboardArrowUpIcon />
         </Fab>

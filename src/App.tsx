@@ -3,8 +3,10 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import PhotoCarousel from "./components/PhotoCarousel";
 import AboutMe from "./components/AboutMe";
+import Gallery from "./components/Gallery";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import ContactForm from "./components/ContactForm";
 
 const App: React.FC = () => {
   return (
@@ -28,15 +30,13 @@ const App: React.FC = () => {
         id="gallery"
         sx={{ flexGrow: 1, textAlign: "center", color: "black" }}
       >
-        <Typography variant="h2">Gallery Section</Typography>
-        <Typography variant="body1">Photos of food and events...</Typography>
+        <Gallery />
       </Box>
       <Box
         id="contact"
         sx={{ flexGrow: 1, textAlign: "center", color: "black" }}
       >
-        <Typography variant="h2">Contact Section</Typography>
-        <Typography variant="body1">Contact information...</Typography>
+        <ContactForm />
       </Box>
       <Box id="blog" sx={{ flexGrow: 1, textAlign: "center", color: "black" }}>
         <Typography variant="h2">Blog Section</Typography>
