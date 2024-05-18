@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,25 +13,38 @@ const leftPages = ["Home", "Products"];
 const rightPages = ["Pricing", "Blog"];
 
 function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: color }}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: color,
+        top: 0,
+        marginBottom: 0,
+        paddingBottom: 0,
+        height: "64px",
+      }}
+    >
+      <Container maxWidth="xl" disableGutters>
         <Toolbar disableGutters>
           {/* Left-side navigation items */}
           <Box sx={{ display: "flex", flexGrow: 0.5, justifyContent: "right" }}>
             {leftPages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  borderBottom: "2px solid transparent",
+                  "&:hover": {
+                    borderBottom: "2px solid black",
+                    background: "none",
+                  },
+                  "&:focus": {
+                    outline: "none",
+                    borderBottom: "2px solid black",
+                  },
+                }}
               >
                 {page}
               </Button>
@@ -78,8 +91,20 @@ function NavBar() {
             {rightPages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  borderBottom: "2px solid transparent",
+                  "&:hover": {
+                    borderBottom: "2px solid black",
+                    background: "none",
+                  },
+                  "&:focus": {
+                    outline: "none",
+                    borderBottom: "2px solid black",
+                  },
+                }}
               >
                 {page}
               </Button>

@@ -1,5 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import { keyframes } from "@mui/system";
+
+// Define keyframes for rocking animation
+const rockingAnimation = keyframes`
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+`;
 
 const Gabagool: React.FC = () => {
   return (
@@ -12,7 +20,7 @@ const Gabagool: React.FC = () => {
         mx: 1,
         transition: "transform 0.3s",
         "&:hover": {
-          transform: "rotate(15deg)",
+          animation: `${rockingAnimation} 1s infinite`,
         },
       }}
     />
